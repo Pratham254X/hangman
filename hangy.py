@@ -59,6 +59,7 @@ HANGMAN_PICS = ['''
    /|\  |
    / \  |
        ==='''  ]
+print("NICE TO MEET YOU")
 print("Howdy!")
 time.sleep(1)
 print("Hangman with Indian Theme")
