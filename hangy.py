@@ -11,7 +11,7 @@
 # 9.  if all words guessed,user wins!
 # 10. Terminate game
 import random, time
-HANGMAN_PICS = ['''
+HANGMAN_PICTURES = ['''
    +---+
        |
        |
@@ -69,20 +69,20 @@ words = '''ant baboon badger bat bear beaver camel cat clam cobra cougar
        coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk
        lion lizard llama mole monkey moose mouse mule newt otter owl panda
        parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep
-       skunk sloth snake spider stork swan tiger toad trout turkey turtle
+       skunk sloth snake nice lmao spork milk cow stork swan tiger toad trout turkey turtle
        weasel whale wolf wombat zebra'''.split()
 tries = 6
 difficulty = 'X'
 def getDifficulty(difficulty):
     while difficulty not in 'EMH':
         if difficulty == 'M':
-            del HANGMAN_PICS[8]
-            del HANGMAN_PICS[7]
+            del HANGMAN_PICTURES[8]
+            del HANGMAN_PICTURES[7]
         if difficulty == 'H':
-            del HANGMAN_PICS[8]
-            del HANGMAN_PICS[7]
-            del HANGMAN_PICS[5]
-            del HANGMAN_PICS[3]
+            del HANGMAN_PICTURES[8]
+            del HANGMAN_PICTURES[7]
+            del HANGMAN_PICTURES[5]
+            del HANGMAN_PICTURES[3]
         else:
             print("Unknown difficulty. Choose again.")
             continue
@@ -91,7 +91,7 @@ def getGetRandomWord(wordList):
     return wordList[wordIndex]
 
 def displayBoard(missedLetters, correctLetters, secretWord):
-    print(HANGMAN_PICS[len(missedLetters)])
+    print(HANGMAN_PICTURES[len(missedLetters)])
     print()
     print('Missed letters: ', end='')
     for letter in missedLetters:
@@ -119,7 +119,7 @@ def getGuess(alreadyGuessed):
         else:
             return guess
 
-def playAgain():
+def askPlayAgain():
     print("Do you want to play again? (yes or no)")
     return input().lower().startswith('y')
     difficulty = input("Choose difficulty: E - Easy, M - Medium, H - Hard: ")
