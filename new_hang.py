@@ -29,20 +29,9 @@ print(images)
 
 # game variables
 
-# Update wordies to names of states and cities of India
-wordies = '''ant baboon nice
+# Names of states and cities of India
 
-badger bat bear beaver camel cat clam cobra cougar
-
-       coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk
-
-       lion lizard llama mole monkey moose mouse mule newt otter owl panda
-
-       parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep
-
-       skunk sloth snake spider stork swan tiger toad trout turkey turtle
-
-       weasel whale wolf wombat zebra'''.split()
+wordies = '''# jharkhand mumbai delhi kerala assam karnataka maharashtra mizoram nagaland rajasthan meghalaya sikkim odisha kashmir goa bihar chandigarh amritsar telangana lakshadweep jaipur indore assam patna haryana punjab kolkata uttarakhand '''.split()
 words = list(wordies)
 
 word = random.choice(words).upper()
@@ -188,10 +177,23 @@ while run:
                         guessed.append(ltr)
 
                         if ltr not in word:
-
                             hangman_status += 1
 
     drawFunc()
+# Give a hint to the user if he/she fails to guess the correct letter in 3 attempts
+    if hangman_status == 3:
+        hint = random.choice(list(word))
+        hints = 1
+        while hints == 1:
+            for i in word:
+                if i not in guessed:
+                    print(i)
+                    text = LETTER_FONT.render(i, 1, (0, 0, 0))
+                    guessed.append(i)
+                    break
+                hints += 1
+        win.blit(text, (400, 200))
+        pygame.display.update()
 
     won = True
 
@@ -202,16 +204,6 @@ while run:
             won = False
 
             break
-    # i = 1
-    # while (i <= 2):
-    # if hangman_status == 3:
-    #     done = False
-    #     while (done == False):
-    #         n = random.choice(word)
-    #         if (n not in guessed):
-    #             print(n)
-    #         done = True
-
     if won:
         display_message("You WON!")
         break
