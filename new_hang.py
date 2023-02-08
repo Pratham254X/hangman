@@ -31,11 +31,11 @@ print(images)
 
 # Names of states and cities of India
 
-wordies = '''# jharkhand mumbai delhi kerala assam karnataka maharashtra mizoram nagaland rajasthan meghalaya sikkim odisha kashmir goa bihar chandigarh amritsar telangana lakshadweep jaipur indore assam patna haryana punjab kolkata uttarakhand '''.split()
+wordies = '''# jharkhand mumbai delhi srinagar kerala assam karnataka maharashtra mizoram nagaland rajasthan meghalaya sikkim odisha kashmir  dehradun panji dispur kota  bihar chandigarh amritsar thiruvananthapuram lucknow ladakh telangana shimla gangtok lakshadweep jamshedpur  jaipur indore assam chennai patna haryana punjab bhopal bhubaneshwar  kolkata uttarakhand '''.split()
 words = list(wordies)
-
+done_guessed_word = []
 word = random.choice(words).upper()
-# print(word)
+print(word)
 
 hangman_status = 0
 
@@ -131,89 +131,80 @@ def drawFunc():
 
 
 def display_message(message):
-
     pygame.time.delay(500)
-
     win.fill(WHITE)
-
     text = WORD_FONT.render(message, 1, (0, 0, 0))
-
     win.blit(text, (text.get_rect(center=win.get_rect().center)))
     pygame.display.update()
-
     pygame.time.delay(2000)
 
-
 while run:
+    if (word not in done_guessed_word):
+        drawFunc()
+        clock.tick(FPS)
+        drawFunc()
+        pygame.display.update()
 
-    drawFunc()
+        for event in pygame.event.get():
 
-    clock.tick(FPS)
+            if event.type == pygame.QUIT:
 
-    drawFunc()
-    pygame.display.update()
+                run = False
 
-    for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
 
-        if event.type == pygame.QUIT:
+                m_x, m_ypos = pygame.mouse.get_pos()
 
-            run = False
+                for letter in letters:
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+                    x, y, ltr, visible = letter
 
-            m_x, m_ypos = pygame.mouse.get_pos()
+                    dis = math.sqrt((x - m_x) ** 2 + (y - m_ypos) ** 2)
 
-            for letter in letters:
+                    if visible:
 
-                x, y, ltr, visible = letter
+                        if dis < RADIUS:
 
-                dis = math.sqrt((x - m_x) ** 2 + (y - m_ypos) ** 2)
+                            letter[3] = False
+                            guessed.append(ltr)
 
-                if visible:
+                            if ltr not in word:
+                                hangman_status += 1
 
-                    if dis < RADIUS:
+        drawFunc()
+    # Give a hint to the user if he/she fails to guess the correct letter in 3 attempts
+        # if hangman_status == 3:
+        #     hint = random.choice(list(word))
+        #     hints = 1
+        #     while hints == 1:
+        #         for i in word:
+        #             if i not in guessed:
+        #                 print(i)
+        #                 text = LETTER_FONT.render(i, 1, (0, 0, 0))
+        #                 guessed.append(i)
+        #                 break
+        #             hints += 1
+        #     win.blit(text, (400, 200))
+        #     pygame.display.update()
 
-                        letter[3] = False
-                        guessed.append(ltr)
+        won = True
 
-                        if ltr not in word:
-                            hangman_status += 1
+        for letter in word:
 
-    drawFunc()
-# Give a hint to the user if he/she fails to guess the correct letter in 3 attempts
-    # if hangman_status == 3:
-    #     hint = random.choice(list(word))
-    #     hints = 1
-    #     while hints == 1:
-    #         for i in word:
-    #             if i not in guessed:
-    #                 print(i)
-    #                 text = LETTER_FONT.render(i, 1, (0, 0, 0))
-    #                 guessed.append(i)
-    #                 break
-    #             hints += 1
-    #     win.blit(text, (400, 200))
-    #     pygame.display.update()
+            if letter not in guessed:
 
-    won = True
+                won = False
 
-    for letter in word:
-
-        if letter not in guessed:
-
-            won = False
-
+                break
+        if won:
+            display_message("You WON!")
             break
-    if won:
-        display_message("You WON!")
-        break
-    if hangman_status == 6:
-        display_message("You LOST!")
-        print("The word was: " + word)
-        display_message("The word was: " + word)
-        break
-
-
-# main()
-
+        if hangman_status == 6:
+            display_message("You LOST!")
+            print("The word was: " + word)
+            display_message("The word was: " + word)
+            break
+        
+    # main()
+done_guessed_word.append(word)
 pygame.quit()
