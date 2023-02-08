@@ -35,7 +35,7 @@ wordies = '''# jharkhand mumbai delhi kerala assam karnataka maharashtra mizoram
 words = list(wordies)
 
 word = random.choice(words).upper()
-print(word)
+# print(word)
 
 hangman_status = 0
 
@@ -181,19 +181,19 @@ while run:
 
     drawFunc()
 # Give a hint to the user if he/she fails to guess the correct letter in 3 attempts
-    if hangman_status == 3:
-        hint = random.choice(list(word))
-        hints = 1
-        while hints == 1:
-            for i in word:
-                if i not in guessed:
-                    print(i)
-                    text = LETTER_FONT.render(i, 1, (0, 0, 0))
-                    guessed.append(i)
-                    break
-                hints += 1
-        win.blit(text, (400, 200))
-        pygame.display.update()
+    # if hangman_status == 3:
+    #     hint = random.choice(list(word))
+    #     hints = 1
+    #     while hints == 1:
+    #         for i in word:
+    #             if i not in guessed:
+    #                 print(i)
+    #                 text = LETTER_FONT.render(i, 1, (0, 0, 0))
+    #                 guessed.append(i)
+    #                 break
+    #             hints += 1
+    #     win.blit(text, (400, 200))
+    #     pygame.display.update()
 
     won = True
 
@@ -208,13 +208,9 @@ while run:
         display_message("You WON!")
         break
     if hangman_status == 6:
-
         display_message("You LOST!")
-
         print("The word was: " + word)
-
         display_message("The word was: " + word)
-
         break
 
 
