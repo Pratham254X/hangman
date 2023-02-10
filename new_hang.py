@@ -35,11 +35,11 @@ wordies = '''# jharkhand mumbai delhi srinagar kerala assam karnataka maharashtr
 words = list(wordies)
 done_guessed_word = []
 word = random.choice(words).upper()
-print(word)
+# print(word)
 
 hangman_status = 0
 
-WHITE = (255, 255, 255)
+DUNNO = (405, 300, 235)
 
 guessed = []
 
@@ -76,7 +76,7 @@ WORD_FONT = pygame.font.SysFont('open sans', 60)
 TITLE_FONT = pygame.font.SysFont('open sans', 70)
 
 
-FPS = 60
+FPS = 200
 
 clock = pygame.time.Clock()
 
@@ -85,7 +85,7 @@ run = True
 
 def drawFunc():
 
-    win.fill(WHITE)
+    win.fill(DUNNO)
 
     # draw title
 
@@ -132,7 +132,7 @@ def drawFunc():
 
 def display_message(message):
     pygame.time.delay(500)
-    win.fill(WHITE)
+    win.fill(DUNNO)
     text = WORD_FONT.render(message, 1, (0, 0, 0))
     win.blit(text, (text.get_rect(center=win.get_rect().center)))
     pygame.display.update()
@@ -173,19 +173,18 @@ while run:
 
         drawFunc()
     # Give a hint to the user if he/she fails to guess the correct letter in 3 attempts
-        # if hangman_status == 3:
-        #     hint = random.choice(list(word))
-        #     hints = 1
-        #     while hints == 1:
-        #         for i in word:
-        #             if i not in guessed:
-        #                 print(i)
-        #                 text = LETTER_FONT.render(i, 1, (0, 0, 0))
-        #                 guessed.append(i)
-        #                 break
-        #             hints += 1
-        #     win.blit(text, (400, 200))
-        #     pygame.display.update()
+        if hangman_status == 3:
+            # hint = random.choice(list(word))
+            hints = 1
+            while hints == 1:
+                for i in word:
+                    if i not in guessed:
+                        print(i)
+                        text = LETTER_FONT.render(i, 1, (0, 0, 0))
+                        guessed.append(i)
+                        hints += 1
+            win.blit(text, (400, 200))
+            pygame.display.update()
 
         won = True
 
