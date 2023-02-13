@@ -7,7 +7,8 @@ import random
 
 pygame.init()
 
-WIDTH, HEIGHT = 800, 500
+WIDTH, HEIGHT = 1366, 768
+
 
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -31,7 +32,7 @@ print(images)
 
 # Names of states and cities of India
 
-wordies = '''# jharkhand mumbai delhi srinagar kerala assam karnataka maharashtra mizoram nagaland rajasthan meghalaya sikkim odisha kashmir  dehradun panji dispur kota  bihar chandigarh amritsar lucknow ladakh telangana shimla gangtok lakshadweep jamshedpur  jaipur indore assam chennai patna haryana punjab bhopal kolkata uttarakhand '''.split()
+wordies = '''jharkhand mumbai delhi srinagar kerala assam karnataka maharashtra mizoram nagaland rajasthan meghalaya sikkim odisha kashmir  dehradun panji dispur kota  bihar chandigarh amritsar lucknow ladakh telangana shimla gangtok lakshadweep jamshedpur  jaipur indore assam chennai patna haryana punjab bhopal kolkata uttarakhand '''.split()
 words = list(wordies)
 done_guessed_word = []
 word = random.choice(words).upper()
@@ -90,7 +91,7 @@ def drawFunc():
 
     # draw title
 
-    text = TITLE_FONT.render("INDIAN HANGMAN", 1, (0, 0, 0))
+    text = TITLE_FONT.render("HANGMAN", 1, (0, 0, 0))
 
     win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
 
