@@ -1,0 +1,1 @@
+Hi, my name is Pratham Gorawala. I have a made game in Python based on Hangman. You have 6 tries to guess a letter. If you guess the word, you win. If you don't, you lose.Every time you fail to guess the letter, the hangman gets a body part. The game is very simple and easy to play. I hope you enjoy it!
