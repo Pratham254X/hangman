@@ -91,7 +91,7 @@ def drawFunc():
 
     # draw title
 
-    text = TITLE_FONT.render("HANGMAN", 1, (0, 0, 0))
+    text = TITLE_FONT.render("INDIAN HANGMAN", 1, (0, 0, 0))
 
     win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
 
