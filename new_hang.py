@@ -7,7 +7,7 @@ import random
 
 pygame.init()
 
-WIDTH, HEIGHT = 1366, 768
+WIDTH, HEIGHT = 900, 500
 
 
 win = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -77,6 +77,7 @@ WORD_FONT = pygame.font.SysFont('open sans', 60)
 
 TITLE_FONT = pygame.font.SysFont('open sans', 70)
 
+STATEMENT_FONT = pygame.font.SysFont('open sans', 45)
 
 FPS = 200
 
@@ -92,9 +93,10 @@ def drawFunc():
     # draw title
 
     text = TITLE_FONT.render("INDIAN HANGMAN", 1, (0, 0, 0))
+    text_2 = STATEMENT_FONT.render("Guess the Indian State/City", 1, (0, 0, 0))
 
     win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
-
+    win.blit(text_2, (230, 90))
     # draw word
 
     display_word = ""
@@ -128,7 +130,7 @@ def drawFunc():
             win.blit(text, (x - text.get_width() /
                      2, y - text.get_height() / 2))
 
-    win.blit(images[hangman_status], (150, 100))
+    win.blit(images[hangman_status], (70, 120))
     pygame.display.update()
 
 
