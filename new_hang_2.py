@@ -23,7 +23,7 @@ images = []
 for i in range(7):
 
     image = pygame.image.load(os.path.join(
-        "images", "hangman" + str(i) + ".jpg"))
+        "images", "hangman" + str(i) + ".png"))
     images.append(image)
 
 print(images)
@@ -79,7 +79,7 @@ TITLE_FONT = pygame.font.SysFont('open sans', 70)
 
 STATEMENT_FONT = pygame.font.SysFont('open sans', 45)
 
-FPS = 300
+FPS = 100
 
 clock = pygame.time.Clock()
 
